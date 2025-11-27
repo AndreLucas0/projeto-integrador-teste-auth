@@ -14,7 +14,8 @@ namespace api.Data
         public DbSet<api.Models.Phone> Phone { get; set; } = default!;
         public DbSet<api.Models.Email> Email { get; set; } = default!;
         public DbSet<api.Models.Address> Address { get; set; } = default!;
-        public DbSet<api.Models.Dealership> Dealership { get; set; } = default!;
+        public DbSet<api.Models.User> User { get; set; } = default!;
+        // public DbSet<api.Models.Dealership> Dealership { get; set; } = default!;
 
         public BackEndAPIContext (DbContextOptions<BackEndAPIContext> options)
             : base(options)
@@ -46,11 +47,11 @@ namespace api.Data
                 .HasForeignKey(a => a.ClientId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Dealership>()
-                .HasOne(d => d.Address)
-                .WithOne(a => a.Dealership)
-                .HasForeignKey<Dealership>(d => d.AddressId)
-                .OnDelete(DeleteBehavior.Cascade);
+            // modelBuilder.Entity<Dealership>()
+            //     .HasOne(d => d.Address)
+            //     .WithOne(a => a.Dealership)
+            //     .HasForeignKey<Dealership>(d => d.AddressId)
+            //     .OnDelete(DeleteBehavior.Cascade);
         }
 
     }

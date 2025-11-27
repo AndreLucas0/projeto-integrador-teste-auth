@@ -12,7 +12,7 @@ public class Address
     public long ClientId { get; set; }
     [JsonIgnore]
     public Client? Client { get; set; }
-    public long DealershipId { get; set; }
-    [JsonIgnore]
-    public Dealership? Dealership { get; set; }
+    // public long DealershipId { get; set; }
+    // [JsonIgnore]
+    // public Dealership? Dealership { get; set; }
 }
