@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using System.Threading.Tasks;
 using api.Interfaces.Services;
 using api.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -23,6 +25,15 @@ public class UserController : ControllerBase
     {
         await _service.Add(user);
         return Ok("User inserted successfully!");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetUser()
+    {
+        var user = await _service.GetByUsername(ClaimTypes.Name);
+        Console.WriteLine(ClaimTypes.Name);
+        Console.WriteLine(user);
+        return Ok(user);
     }
     
 }
