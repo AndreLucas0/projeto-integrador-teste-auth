@@ -6,5 +6,5 @@ namespace api.Interfaces.Services;
 
 public interface ITokenService
 {
-    Task<string> GenerateToken(LoginDTO dto);
+    string GenerateToken(User user);
 }

@@ -1,3 +1,4 @@
+using api.DTOs.Auth;
 using api.Models;
 
 namespace api.Interfaces.Services;

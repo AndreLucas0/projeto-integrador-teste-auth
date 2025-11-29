@@ -15,21 +15,14 @@ public class TokenService : ITokenService
 {
 
     private readonly IConfiguration _configuration;
-    private readonly IUserRepository _userRepository;
 
-    public TokenService(IConfiguration configuration, IUserRepository userRepository)
+    public TokenService(IConfiguration configuration)
     {
-        _userRepository = userRepository;
         _configuration = configuration;
     }
 
-    public async Task<string> GenerateToken(LoginDTO dto)
+    public string GenerateToken(User user)
     {
-        var userDatabase = await _userRepository.GetByUsername(dto.Username);
-        if (userDatabase == null || dto.Username != userDatabase.Username || dto.Password != userDatabase.Password)
-        {
-            return string.Empty;
-        }
 
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"] ?? string.Empty));
         var issuer = _configuration["Jwt:Issuer"];
@@ -42,8 +35,8 @@ public class TokenService : ITokenService
             audience: audience,
             claims: new[]
             {
-                new Claim(type: ClaimTypes.Name, userDatabase.Username),
-                new Claim(type: ClaimTypes.Role, userDatabase.Role)
+                new Claim(type: ClaimTypes.Name, user.Username),
+                new Claim(type: ClaimTypes.Role, user.Role.ToString())
             },
             expires: DateTime.UtcNow.AddHours(2),
             signingCredentials: singinCredentials);

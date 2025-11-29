@@ -47,6 +47,10 @@ namespace api.Data
                 .HasForeignKey(a => a.ClientId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<User>()
+                .Property(u => u.Role)
+                .HasConversion<string>();
+
             // modelBuilder.Entity<Dealership>()
             //     .HasOne(d => d.Address)
             //     .WithOne(a => a.Dealership)

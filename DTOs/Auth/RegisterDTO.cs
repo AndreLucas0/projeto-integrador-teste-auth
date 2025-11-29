@@ -1,10 +1,9 @@
 using api.Interfaces.Enums;
 
-namespace api.Models;
+namespace api.DTOs.Auth;
 
-public class User
+public class RegisterDTO
 {
-    public long Id { get; private set; }
     public required string Username { get; set; }
     public required string Password { get; set; }
     public required UserRoleEnum Role { get; set; }
