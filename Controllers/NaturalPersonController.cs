@@ -170,51 +170,51 @@ namespace api.Controllers
             return NoContent();
         }
 
-        [HttpPost("{id}/addresses")]
-        public async Task<IActionResult> CreateAddress(long id, CreateAddressDTO dto)
-        {
-            var naturalPerson = await _service.AddAddress(id, dto);
-            return Ok(naturalPerson);
-        }
+        // [HttpPost("{id}/addresses")]
+        // public async Task<IActionResult> CreateAddress(long id, CreateAddressDTO dto)
+        // {
+        //     var naturalPerson = await _service.AddAddress(id, dto);
+        //     return Ok(naturalPerson);
+        // }
 
-        [HttpGet("{id}/addresses")]
-        public async Task<ActionResult<IEnumerable<Address>>> GetAllAddresses(long id)
-        {
-            return Ok(await _service.GetAllAddresses(id));
-        }
+        // [HttpGet("{id}/addresses")]
+        // public async Task<ActionResult<IEnumerable<Address>>> GetAllAddresses(long id)
+        // {
+        //     return Ok(await _service.GetAllAddresses(id));
+        // }
 
-        [HttpGet("{id}/addresses/{addressId}")]
-        public async Task<ActionResult<Address>> GetAddressById(long id, long addressId)
-        {
-            var address = await _service.GetAddressById(id, addressId);
-            if (address == null)
-            {
-                return NotFound("Address not found");
-            }
-            return Ok(address);
-        }
+        // [HttpGet("{id}/addresses/{addressId}")]
+        // public async Task<ActionResult<Address>> GetAddressById(long id, long addressId)
+        // {
+        //     var address = await _service.GetAddressById(id, addressId);
+        //     if (address == null)
+        //     {
+        //         return NotFound("Address not found");
+        //     }
+        //     return Ok(address);
+        // }
 
-        [HttpPut("{id}/addresses/{addressId}")]
-        public async Task<ActionResult<NaturalPerson>> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
-        {
-            var naturalPerson = await _service.UpdateAddress(id, addressId, dto);
-            if (naturalPerson == null)
-            {
-                return NotFound("Natural person or address not found");
-            }
-            return Ok(naturalPerson);
-        }
+        // [HttpPut("{id}/addresses/{addressId}")]
+        // public async Task<ActionResult<NaturalPerson>> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
+        // {
+        //     var naturalPerson = await _service.UpdateAddress(id, addressId, dto);
+        //     if (naturalPerson == null)
+        //     {
+        //         return NotFound("Natural person or address not found");
+        //     }
+        //     return Ok(naturalPerson);
+        // }
 
-        [HttpDelete("{id}/addresses/{addressId}")]
-        public async Task<IActionResult> DeleteAddress(long id, long addressId)
-        {
-            var deleted = await _service.RemoveAddress(id, addressId);
-            if (!deleted)
-            {
-                return NotFound("Natural person or address not found");
-            }
-            return NoContent();
-        }
+        // [HttpDelete("{id}/addresses/{addressId}")]
+        // public async Task<IActionResult> DeleteAddress(long id, long addressId)
+        // {
+        //     var deleted = await _service.RemoveAddress(id, addressId);
+        //     if (!deleted)
+        //     {
+        //         return NotFound("Natural person or address not found");
+        //     }
+        //     return NoContent();
+        // }
 
     }
 }

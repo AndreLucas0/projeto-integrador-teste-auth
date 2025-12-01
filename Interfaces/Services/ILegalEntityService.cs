@@ -1,3 +1,4 @@
+using api.DTOs.Address;
 using api.DTOs.Client;
 using api.DTOs.LegalEntity;
 using api.Models;
@@ -25,5 +26,5 @@ public interface ILegalEntityService
     Task<bool> RemoveAddress(long id, long phoneId);
     Task<LegalEntity?> UpdatePhone(long id, long phoneId, UpdatePhoneDTO dto);
     Task<LegalEntity?> UpdateEmail(long id, long emailId, UpdateEmailDTO dto);
-    Task<LegalEntity?> UpdateAddress(long id, long addressId, UpdateAddressDTO dto);
+    // Task<LegalEntity?> UpdateAddress(long id, long addressId, UpdateAddressDTO dto);
 }

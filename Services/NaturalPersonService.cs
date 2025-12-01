@@ -214,90 +214,90 @@ public class NaturalPersonService : INaturalPersonService
         return await _repository.Save(naturalPerson);
     }
 
-    public async Task<NaturalPerson?> AddAddress(long id, CreateAddressDTO dto)
-    {
-        var naturalPerson = await GetById(id);
-        if (naturalPerson == null)
-        {
-            return null;
-        }
-        var address = new Address {
-            Street = dto.Street,
-            Number = dto.Number,
-            City = dto.City,
-            FederativeUnit = dto.FederativeUnit,
-            Client = naturalPerson
-        };
+    // public async Task<NaturalPerson?> AddAddress(long id, CreateAddressDTO dto)
+    // {
+    //     var naturalPerson = await GetById(id);
+    //     if (naturalPerson == null)
+    //     {
+    //         return null;
+    //     }
+    //     var address = new Address {
+    //         Street = dto.Street,
+    //         Number = dto.Number,
+    //         City = dto.City,
+    //         FederativeUnit = dto.FederativeUnit,
+    //         Client = naturalPerson
+    //     };
 
-        naturalPerson.AddAddress(address);
-        return await _repository.Save(naturalPerson);
-    }
+    //     naturalPerson.AddAddress(address);
+    //     return await _repository.Save(naturalPerson);
+    // }
 
-    public async Task<List<Address>> GetAllAddresses(long id)
-    {
-        var naturalPerson = await GetById(id);
-        if (naturalPerson == null)
-        {
-            return new List<Address>();
-        }
-        return naturalPerson.Addresses;
-    }
+    // public async Task<List<Address>> GetAllAddresses(long id)
+    // {
+    //     var naturalPerson = await GetById(id);
+    //     if (naturalPerson == null)
+    //     {
+    //         return new List<Address>();
+    //     }
+    //     return naturalPerson.Addresses;
+    // }
 
-    public async Task<Address?> GetAddressById(long id, long addressId)
-    {
-        var naturalPerson = await GetById(id);
-        if (naturalPerson == null)
-        {
-            return null;
-        }   
-        var address = naturalPerson.GetAddressById(addressId);
-        if (address == null)
-        {
-            return null;
-        }
-        return address;
-    }
+    // public async Task<Address?> GetAddressById(long id, long addressId)
+    // {
+    //     var naturalPerson = await GetById(id);
+    //     if (naturalPerson == null)
+    //     {
+    //         return null;
+    //     }   
+    //     var address = naturalPerson.GetAddressById(addressId);
+    //     if (address == null)
+    //     {
+    //         return null;
+    //     }
+    //     return address;
+    // }
 
-    public async Task<bool> RemoveAddress(long id, long addressId)
-    {
-        var naturalPerson = await GetById(id);
-        if (naturalPerson == null)
-        {
-            return false;
-        }
-        naturalPerson.RemoveAddress(addressId);
-        await _repository.Save(naturalPerson);
-        return true;
-    }
+    // public async Task<bool> RemoveAddress(long id, long addressId)
+    // {
+    //     var naturalPerson = await GetById(id);
+    //     if (naturalPerson == null)
+    //     {
+    //         return false;
+    //     }
+    //     naturalPerson.RemoveAddress(addressId);
+    //     await _repository.Save(naturalPerson);
+    //     return true;
+    // }
 
-    public async Task<NaturalPerson?> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
-    {
-        var naturalPerson = await GetById(id);
-        if (naturalPerson == null)
-        {
-            return null;
-        }
-        var address = naturalPerson.GetAddressById(addressId);
-        if (address == null)
-        {
-            return null;
-        }
-        if (!string.IsNullOrWhiteSpace(dto.Street))
-        {
-            address.Street = dto.Street;
-        } if (!string.IsNullOrWhiteSpace(dto.Number))
-        {
-            address.Number = dto.Number;
-        } if (!string.IsNullOrWhiteSpace(dto.City))
-        {
-            address.City = dto.City;
-        } if (!string.IsNullOrWhiteSpace(dto.FederativeUnit))
-        {
-            address.FederativeUnit = dto.FederativeUnit;
-        }
+    // public async Task<NaturalPerson?> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
+    // {
+    //     var naturalPerson = await GetById(id);
+    //     if (naturalPerson == null)
+    //     {
+    //         return null;
+    //     }
+    //     var address = naturalPerson.GetAddressById(addressId);
+    //     if (address == null)
+    //     {
+    //         return null;
+    //     }
+    //     if (!string.IsNullOrWhiteSpace(dto.Street))
+    //     {
+    //         address.Street = dto.Street;
+    //     } if (!string.IsNullOrWhiteSpace(dto.Number))
+    //     {
+    //         address.Number = dto.Number;
+    //     } if (!string.IsNullOrWhiteSpace(dto.City))
+    //     {
+    //         address.City = dto.City;
+    //     } if (!string.IsNullOrWhiteSpace(dto.FederativeUnit))
+    //     {
+    //         address.FederativeUnit = dto.FederativeUnit;
+    //     }
 
-        naturalPerson.UpdatedAt = DateTime.UtcNow;
+    //     naturalPerson.UpdatedAt = DateTime.UtcNow;
 
-        return await _repository.Save(naturalPerson);
-    }
+    //     return await _repository.Save(naturalPerson);
+    // }
 }

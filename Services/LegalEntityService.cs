@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.Address;
 using api.DTOs.Client;
 using api.DTOs.LegalEntity;
 using api.Interfaces.Repositories;
@@ -14,10 +15,12 @@ public class LegalEntityService : ILegalEntityService
 {
     
     private readonly ILegalEntityRepository _repository;
+    private readonly ViaCepService _viaCepService;
 
-    public LegalEntityService (ILegalEntityRepository repository)
+    public LegalEntityService (ILegalEntityRepository repository, ViaCepService viaCepService)
     {
         _repository = repository;
+        _viaCepService = viaCepService;
     }
     
     public async Task<LegalEntity> Create(CreateLegalEntityDTO dto)
@@ -227,12 +230,17 @@ public class LegalEntityService : ILegalEntityService
         {
             return null;
         }
-        var address = new Address {
-            Street = dto.Street,
+        var viaCep = await _viaCepService.GetAddress(dto.Cep);
+
+        var address = new Address
+        {
+            Cep = viaCep.Cep,
+            Street = viaCep.Logradouro,
+            District = viaCep.Bairro,
+            City = viaCep.Localidade,
+            State = viaCep.Uf,
             Number = dto.Number,
-            City = dto.City,
-            FederativeUnit = dto.FederativeUnit,
-            Client = legalEntity
+            Complement = dto.Complement
         };
 
         legalEntity.AddAddress(address);
@@ -276,35 +284,35 @@ public class LegalEntityService : ILegalEntityService
         return true;
     }
 
-    public async Task<LegalEntity?> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
-    {
-        var legalEntity = await GetById(id);
-        if (legalEntity == null)
-        {
-            return null;
-        }
-        var address = legalEntity.GetAddressById(addressId);
-        if (address == null)
-        {
-            return null;
-        }
-        if (!string.IsNullOrWhiteSpace(dto.Street))
-        {
-            address.Street = dto.Street;
-        } if (!string.IsNullOrWhiteSpace(dto.Number))
-        {
-            address.Number = dto.Number;
-        } if (!string.IsNullOrWhiteSpace(dto.City))
-        {
-            address.City = dto.City;
-        } if (!string.IsNullOrWhiteSpace(dto.FederativeUnit))
-        {
-            address.FederativeUnit = dto.FederativeUnit;
-        }
+    // public async Task<LegalEntity?> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
+    // {
+    //     var legalEntity = await GetById(id);
+    //     if (legalEntity == null)
+    //     {
+    //         return null;
+    //     }
+    //     var address = legalEntity.GetAddressById(addressId);
+    //     if (address == null)
+    //     {
+    //         return null;
+    //     }
+    //     if (!string.IsNullOrWhiteSpace(dto.Street))
+    //     {
+    //         address.Street = dto.Street;
+    //     } if (!string.IsNullOrWhiteSpace(dto.Number))
+    //     {
+    //         address.Number = dto.Number;
+    //     } if (!string.IsNullOrWhiteSpace(dto.City))
+    //     {
+    //         address.City = dto.City;
+    //     } if (!string.IsNullOrWhiteSpace(dto.FederativeUnit))
+    //     {
+    //         address.FederativeUnit = dto.FederativeUnit;
+    //     }
 
-        legalEntity.UpdatedAt = DateTime.UtcNow;
+    //     legalEntity.UpdatedAt = DateTime.UtcNow;
 
-        return await _repository.Save(legalEntity);
-    }
+    //     return await _repository.Save(legalEntity);
+    // }
 
 }

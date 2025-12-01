@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using api.Data;
 using api.Models;
 using api.Interfaces.Services;
 using api.DTOs.LegalEntity;
 using api.DTOs.Client;
+using api.DTOs.Address;
 
 namespace api.Controllers
 {
@@ -193,16 +187,16 @@ namespace api.Controllers
             return Ok(address);
         }
 
-        [HttpPut("{id}/addresses/{addressId}")]
-        public async Task<ActionResult<LegalEntity>> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
-        {
-            var legalEntity = await _service.UpdateAddress(id, addressId, dto);
-            if (legalEntity == null)
-            {
-                return NotFound("Legal entity or address not found");
-            }
-            return Ok(legalEntity);
-        }
+        // [HttpPut("{id}/addresses/{addressId}")]
+        // public async Task<ActionResult<LegalEntity>> UpdateAddress(long id, long addressId, UpdateAddressDTO dto)
+        // {
+        //     var legalEntity = await _service.UpdateAddress(id, addressId, dto);
+        //     if (legalEntity == null)
+        //     {
+        //         return NotFound("Legal entity or address not found");
+        //     }
+        //     return Ok(legalEntity);
+        // }
 
         [HttpDelete("{id}/addresses/{addressId}")]
         public async Task<IActionResult> DeleteAddress(long id, long addressId)
