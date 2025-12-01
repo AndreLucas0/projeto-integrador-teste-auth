@@ -30,9 +30,14 @@ public class UserController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetUser()
     {
-        var user = await _service.GetByUsername(ClaimTypes.Name);
-        Console.WriteLine(ClaimTypes.Name);
-        Console.WriteLine(user);
+        var username = User.Identity?.Name;
+
+        if (username == null)
+        {
+            return Unauthorized("No username claim found");
+        }
+
+        var user = await _service.GetByUsername(username);
         return Ok(user);
     }
     

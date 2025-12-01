@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andre Lucas Ferreira\\Desktop\\projeto-integrador-teste-auth\\api.csproj": {}
+    "C:\\Users\\aluca\\OneDrive\\Área de Trabalho\\projeto-integrador-teste-auth\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andre Lucas Ferreira\\Desktop\\projeto-integrador-teste-auth\\api.csproj": {
+    "C:\\Users\\aluca\\OneDrive\\Área de Trabalho\\projeto-integrador-teste-auth\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andre Lucas Ferreira\\Desktop\\projeto-integrador-teste-auth\\api.csproj",
+        "projectUniqueName": "C:\\Users\\aluca\\OneDrive\\Área de Trabalho\\projeto-integrador-teste-auth\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\Andre Lucas Ferreira\\Desktop\\projeto-integrador-teste-auth\\api.csproj",
-        "packagesPath": "C:\\Users\\Andre Lucas Ferreira\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andre Lucas Ferreira\\Desktop\\projeto-integrador-teste-auth\\obj\\",
+        "projectPath": "C:\\Users\\aluca\\OneDrive\\Área de Trabalho\\projeto-integrador-teste-auth\\api.csproj",
+        "packagesPath": "C:\\Users\\aluca\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aluca\\OneDrive\\Área de Trabalho\\projeto-integrador-teste-auth\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Andre Lucas Ferreira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aluca\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
