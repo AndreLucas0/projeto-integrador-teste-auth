@@ -11,13 +11,17 @@ public class AuthService : IAuthService
 {
 
     private readonly IUserRepository _repository;
+    private readonly ILegalEntityRepository _legalEntityRepository;
+    private readonly INaturalPersonRepository _naturalPersonRepository;
     private readonly ITokenService _tokenService;
     private readonly PasswordHasher<User> _passwordHasher = new();
 
-    public AuthService(IUserRepository repository, ITokenService tokenService)
+    public AuthService(IUserRepository repository, ITokenService tokenService, ILegalEntityRepository legalEntityRepository, NaturalPersonRepository naturalPersonRepository)
     {
         _repository = repository;
         _tokenService = tokenService;
+        _legalEntityRepository = legalEntityRepository;
+        _naturalPersonRepository = naturalPersonRepository;
     }
 
     public async Task<AuthResponseDTO?> Login(LoginDTO dto)

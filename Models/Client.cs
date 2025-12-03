@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models;
 
-public abstract class Client
+public abstract class Client : User
 {
-    public long Id { get; private set; }
     public List<Email> Emails { get; set; } = new ();
     public List<Phone> Phones { get; set; } = new ();
     public List<Address> Addresses { get; set; } = new ();
