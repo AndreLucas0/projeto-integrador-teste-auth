@@ -3,7 +3,8 @@ namespace api.Interfaces.Enums;
 public enum UserRoleEnum
 {
     Admin,
-    Commom,
+    LegalEntity,
+    NaturalPerson,
     Employee,
     Manager
 }

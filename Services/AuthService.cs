@@ -1,4 +1,5 @@
 using api.DTOs.Auth;
+using api.Interfaces.Enums;
 using api.Interfaces.Repositories;
 using api.Interfaces.Services;
 using api.Models;
@@ -49,7 +50,7 @@ public class AuthService : IAuthService
         };
     }
 
-    public async Task<User?> Register(RegisterDTO dto)
+    public async Task<User?> RegisterLegalEntity(LegalEntityRegisterDTO dto)
     {
         var existing = await _repository.GetByUsername(dto.Username);
         if (existing != null)
@@ -57,17 +58,50 @@ public class AuthService : IAuthService
             return null;
         }
 
-        var user = new User
+        var legalEntity = new LegalEntity
         {
             Username = dto.Username,
             Role = dto.Role,
-            Password = ""
+            Password = "",
+            BusinessName = dto.BusinessName,
+            Cnpj = dto.Cnpj,
+            CompanyName = dto.CompanyName,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         };
 
-        user.Password = _passwordHasher.HashPassword(user, dto.Password);
+        legalEntity.Password = _passwordHasher.HashPassword(legalEntity, dto.Password);
 
-        await _repository.Add(user);
+        await _legalEntityRepository.Create(legalEntity);
 
-        return user;
+        return legalEntity;
+    }
+
+    public async Task<User?> RegisterNaturalPerson(NaturalPersonRegisterDTO dto)
+    {
+        var existing = await _repository.GetByUsername(dto.Username);
+        if (existing != null)
+        {
+            return null;
+        }
+
+        var naturalPerson = new NaturalPerson
+        {
+            Username = dto.Username,
+            Role = dto.Role,
+            Password = "",
+            Name = dto.Name,
+            Cpf = dto.Cpf,
+            Birth = dto.Birth,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+
+        };
+
+        naturalPerson.Password = _passwordHasher.HashPassword(naturalPerson, dto.Password);
+
+        await _naturalPersonRepository.Create(naturalPerson);
+
+        return naturalPerson;
     }
 }
