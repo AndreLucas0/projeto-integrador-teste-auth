@@ -17,7 +17,7 @@ public class AuthService : IAuthService
     private readonly ITokenService _tokenService;
     private readonly PasswordHasher<User> _passwordHasher = new();
 
-    public AuthService(IUserRepository repository, ITokenService tokenService, ILegalEntityRepository legalEntityRepository, NaturalPersonRepository naturalPersonRepository)
+    public AuthService(IUserRepository repository, ITokenService tokenService, ILegalEntityRepository legalEntityRepository, INaturalPersonRepository naturalPersonRepository)
     {
         _repository = repository;
         _tokenService = tokenService;
@@ -61,7 +61,7 @@ public class AuthService : IAuthService
         var legalEntity = new LegalEntity
         {
             Username = dto.Username,
-            Role = dto.Role,
+            Role = UserRoleEnum.LegalEntity,
             Password = "",
             BusinessName = dto.BusinessName,
             Cnpj = dto.Cnpj,
@@ -88,7 +88,7 @@ public class AuthService : IAuthService
         var naturalPerson = new NaturalPerson
         {
             Username = dto.Username,
-            Role = dto.Role,
+            Role = UserRoleEnum.NaturalPerson,
             Password = "",
             Name = dto.Name,
             Cpf = dto.Cpf,

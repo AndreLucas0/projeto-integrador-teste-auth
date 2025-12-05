@@ -3,6 +3,7 @@ using api.Data;
 using api.DTOs.Address;
 using api.DTOs.Client;
 using api.DTOs.LegalEntity;
+using api.Interfaces.Enums;
 using api.Interfaces.Repositories;
 using api.Interfaces.Services;
 using api.Models;
@@ -30,7 +31,10 @@ public class LegalEntityService : ILegalEntityService
             UpdatedAt = DateTime.UtcNow,
             BusinessName = dto.BusinessName,
             CompanyName = dto.CompanyName,
-            Cnpj = dto.Cnpj
+            Cnpj = dto.Cnpj,
+            Username = "aaaa",
+            Password = "aaaa",
+            Role = UserRoleEnum.LegalEntity
         };
 
         return await _repository.Create(legalEntity);

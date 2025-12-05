@@ -20,7 +20,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> login(LoginDTO dto)
+    public async Task<ActionResult> Login(LoginDTO dto)
     {
         var result = await _service.Login(dto);
         if (result == null)
@@ -31,16 +31,28 @@ public class AuthController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("register")]
-    public async Task<ActionResult> register(RegisterDTO dto)
+    [HttpPost("registerNaturalPerson")]
+    public async Task<ActionResult> RegisterNaturalPerson(NaturalPersonRegisterDTO dto)
     {
-        var user = await _service.Register(dto);
+        var user = await _service.RegisterNaturalPerson(dto);
         if (user == null)
         {
             return BadRequest("Username already exists.");
         }
 
-        return Ok("User created successfully.");
+        return Ok("Natural person created successfully.");
+    }
+
+    [HttpPost("registerLegalEntity")]
+    public async Task<ActionResult> RegisterLegalEntity(LegalEntityRegisterDTO dto)
+    {
+        var user = await _service.RegisterLegalEntity(dto);
+        if (user == null)
+        {
+            return BadRequest("Username already exists.");
+        }
+
+        return Ok("Legal entity created successfully.");
     }
     
 }

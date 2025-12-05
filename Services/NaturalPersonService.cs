@@ -1,5 +1,6 @@
 using api.DTOs.Client;
 using api.DTOs.NaturalPerson;
+using api.Interfaces.Enums;
 using api.Interfaces.Repositories;
 using api.Interfaces.Services;
 using api.Models;
@@ -24,7 +25,10 @@ public class NaturalPersonService : INaturalPersonService
             UpdatedAt = DateTime.UtcNow,
             Name = dto.Name,
             Cpf = dto.Cpf,
-            Birth = dto.Birth
+            Birth = dto.Birth,
+            Username = "aaaaa",
+            Password = "aaaaa",
+            Role = UserRoleEnum.NaturalPerson
         };
 
         return await _repository.Create(naturalPerson);

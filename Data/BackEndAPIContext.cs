@@ -24,6 +24,7 @@ namespace api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Client>().ToTable("Client");
             modelBuilder.Entity<LegalEntity>().ToTable("LegalEntity");
             modelBuilder.Entity<NaturalPerson>().ToTable("NaturalPerson");
